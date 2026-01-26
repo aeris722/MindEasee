@@ -81,6 +81,7 @@ body {
   color: white;
   cursor: pointer;
 }
+
 .mood-options button {
   margin: 6px;
   padding: 8px 12px;
@@ -93,9 +94,7 @@ body {
   background: #6366f1;
   color: white;
 }
-.red { color: #dc2626; }
-.yellow { color: #ca8a04; }
-.blue { color: #2563eb; }
+
 #calendar {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
@@ -129,6 +128,7 @@ body {
 .dot.red { background: #dc2626; }
 .dot.yellow { background: #ca8a04; }
 .dot.blue { background: #2563eb; }
+
 #cycle-graph {
   display: flex;
   align-items: flex-end;
@@ -143,6 +143,7 @@ body {
   text-align: center;
   font-size: 10px;
 }
+
 #pain-graph {
   display: flex;
   align-items: flex-end;
@@ -164,6 +165,7 @@ body {
   margin: 4px 4px 0 0;
   font-size: 0.85em;
 }
+
 #todo-list li {
   display: flex;
   justify-content: space-between;
@@ -180,11 +182,6 @@ body {
 
 #todo-list input[type="checkbox"] {
   transform: scale(1.3);
-}
-#calendar {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 8px;
 }
 
 .calendar-day {
@@ -206,6 +203,7 @@ body {
   left: 50%;
   transform: translateX(-50%);
 }
+
 .habit-row {
   display: flex;
   gap: 10px;
@@ -234,6 +232,7 @@ body {
 .habit-day.today {
   outline: 2px solid #22c55e;
 }
+
 .habit-item {
   display: flex;
   justify-content: space-between;
