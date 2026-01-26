@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Journal | MindEase</title>
+
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/ui.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <h2>Journal</h2>
+  <button onclick="location.href='dashboard.html'">⬅ Back</button>
+</header>
+
+<main class="dashboard">
+
+  <section class="glass">
+    <h3>Write freely</h3>
+
+    <textarea
+      id="journal-text"
+      rows="6"
+      placeholder="Write whatever you’re feeling. This is private."
+      style="width:100%; padding:12px; border-radius:12px;"
+    ></textarea>
+
+    <br><br>
+
+    <label>Optional mood tag</label>
+    <select id="journal-mood">
+      <option value="">None</option>
+      <option value="Happy">Happy</option>
+      <option value="Calm">Calm</option>
+      <option value="Stressed">Stressed</option>
+      <option value="Sad">Sad</option>
+      <option value="Low">Low</option>
+    </select>
+
+    <br><br>
+
+    <button id="save-journal">Save Entry</button>
+  </section>
+
+  <section class="glass">
+    <h3>Past entries</h3>
+    <ul id="journal-list"></ul>
+  </section>
+
+</main>
+
+<script type="module" src="js/common.js"></script>
+<script type="module" src="js/journal.js"></script>
+
+</body>
+</html>

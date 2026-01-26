@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Daily Check-In | MindEase</title>
+
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/ui.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <h2>Daily Check-In</h2>
+</header>
+
+<main class="dashboard">
+
+  <!-- MOOD -->
+  <section class="glass">
+    <h3>How are you feeling today?</h3>
+    <div class="mood-options">
+      <button data-mood="Happy">😊 Happy</button>
+      <button data-mood="Calm">😌 Calm</button>
+      <button data-mood="Stressed">😖 Stressed</button>
+      <button data-mood="Sad">😔 Sad</button>
+      <button data-mood="Low">😞 Low</button>
+    </div>
+  </section>
+
+  <!-- STRESS -->
+  <section class="glass">
+    <h3>Stress Level</h3>
+    <input type="range" id="stress" min="1" max="10" />
+    <span id="stress-value">5</span>
+  </section>
+
+  <!-- SLEEP -->
+  <section class="glass">
+    <h3>Sleep Quality</h3>
+    <select id="sleep">
+      <option value="">Select</option>
+      <option value="Good">Good</option>
+      <option value="Okay">Okay</option>
+      <option value="Poor">Poor</option>
+    </select>
+  </section>
+
+  <!-- PERIOD (OPTIONAL) -->
+  <section class="glass">
+    <h3>Period Tracking (optional)</h3>
+    <select id="period">
+      <option value="">Not tracking</option>
+      <option value="Menstrual">Menstrual</option>
+      <option value="PMS">PMS</option>
+      <option value="Ovulation">Ovulation</option>
+    </select>
+  </section>
+
+  <button id="submit-checkin">Save Check-In</button>
+
+  <label>Energy level (0–10)</label>
+<input type="range" id="energy" min="0" max="10" value="5">
+
+<label>Focus level (0–10)</label>
+<input type="range" id="focus" min="0" max="10" value="5">
+
+<label>Journal (optional)</label>
+<textarea
+  id="journal"
+  rows="4"
+  placeholder="Write anything about today (optional)"
+></textarea>
+
+
+</main>
+
+<script type="module" src="js/common.js"></script>
+<script type="module" src="js/checkin.js"></script>
+
+</body>
+</html>

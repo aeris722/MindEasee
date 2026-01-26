@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>To-Do | MindEase</title>
+
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/ui.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <h2>To-Do</h2>
+  <button onclick="location.href='dashboard.html'">⬅ Back</button>
+</header>
+
+<main class="dashboard">
+
+<section class="glass">
+  <h3>Add Task</h3>
+
+  <input id="task-text" placeholder="Task (e.g. Mathematics)" />
+
+  <select id="task-priority">
+    <option value="red">🔴 High</option>
+    <option value="yellow">🟡 Medium</option>
+    <option value="blue">🔵 Low</option>
+  </select>
+
+  <input type="date" id="task-date" />
+
+  <button id="add-task">Add</button>
+
+  <ul id="task-list"></ul>
+</section>
+  </section>
+
+</main>
+
+<script type="module" src="js/common.js"></script>
+<script type="module" src="js/todo.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Periods | MindEase</title>
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/ui.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <h2>Periods</h2>
+  <button onclick="location.href='dashboard.html'">⬅ Back</button>
+</header>
+
+<main class="dashboard">
+
+  <!-- LOG PERIOD -->
+  <section class="glass">
+    <h3>Log period</h3>
+
+    <label>Start date</label>
+    <input type="date" id="start-date" />
+
+    <label>End date (optional)</label>
+    <input type="date" id="end-date" />
+
+    <label>Flow</label>
+    <select id="flow">
+      <option value="">Select</option>
+      <option value="light">Light</option>
+      <option value="medium">Medium</option>
+      <option value="heavy">Heavy</option>
+    </select>
+
+    <label>Pain level (0–10)</label>
+    <input type="range" id="pain" min="0" max="10" />
+
+    <label>Mood</label>
+    <select id="mood">
+      <option value="">Select</option>
+      <option value="calm">Calm</option>
+      <option value="low">Low</option>
+      <option value="sad">Sad</option>
+      <option value="irritable">Irritable</option>
+      <option value="anxious">Anxious</option>
+    </select>
+
+    <label>Sleep quality</label>
+    <select id="sleep">
+      <option value="">Select</option>
+      <option value="good">Good</option>
+      <option value="okay">Okay</option>
+      <option value="poor">Poor</option>
+    </select>
+
+    <br><br>
+    <button id="save-period">Save</button>
+  </section>
+
+  <!-- HISTORY -->
+<!-- SUMMARY -->
+<section class="glass">
+  <h3>Patterns & Summary</h3>
+
+  <p id="cycle-summary">Loading cycle summary…</p>
+  <p id="pain-summary">Loading pain summary…</p>
+
+  <div id="cycle-graph"></div>
+</section>
+<!-- ANALYTICS -->
+<section class="glass">
+  <h3>Patterns</h3>
+  <p id="cycle-summary">Log more cycles to see patterns.</p>
+  <div id="cycle-graph"></div>
+</section>
+
+<!-- PAIN & MOOD -->
+<h4>Pain & Mood Trends</h4>
+<div id="pain-graph"></div>
+<p id="pain-insight"></p>
+
+<div id="mood-summary"></div>
+<ul id="period-history"></ul>
+
+<!-- PRIVACY -->
+<section class="glass">
+  <h3>Privacy & Control</h3>
+
+  <p>
+    Your period data is stored privately under your account.
+    You are always in control.
+  </p>
+
+  <button id="delete-period-data" style="background:#fee2e2;">
+    Delete all period data
+  </button>
+
+  <p class="note">
+    This action cannot be undone.
+  </p>
+</section>
+
+</main>
+
+<script type="module" src="js/common.js"></script>
+<script type="module" src="js/period.js"></script>
+<script type="module" src="js/period-analytics.js"></script>
+<script type="module" src="js/period-privacy.js"></script>
+
+
+</body>
+</html>

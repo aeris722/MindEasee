@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>MindEase | Dashboard</title>
+
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/ui.css" />
+</head>
+<body>
+
+<!-- TOP BAR -->
+<header class="topbar">
+  <div class="quote-box">
+    <span id="daily-quote">“One day at a time.”</span>
+    <button id="edit-quote">✏️</button>
+  </div>
+
+  <div class="topbar-right">
+    <span id="today-date"></span>
+    <button class="menu-btn">☰</button>
+  </div>
+</header>
+
+<!-- MAIN DASHBOARD -->
+<main class="dashboard">
+
+  <!-- HEALTH SNAPSHOT -->
+  <section class="snapshot">
+    <div class="card glass" id="mood-card">
+      <h4>Mood</h4>
+      <p id="mood-value">—</p>
+    </div>
+
+    <div class="card glass" id="sleep-card">
+      <h4>Sleep</h4>
+      <p id="sleep-value">—</p>
+    </div>
+
+    <div class="card glass" id="stress-card">
+      <h4>Stress</h4>
+      <p id="stress-value">—</p>
+    </div>
+
+    <div class="card glass" id="cycle-card">
+      <h4>Cycle</h4>
+      <p id="cycle-value">—</p>
+    </div>
+  </section>
+
+  <!-- TODAY FOCUS -->
+  <section class="today-focus">
+    <h3>Today</h3>
+
+    <ul id="focus-list">
+      <li class="red">🔴 Important task</li>
+      <li class="yellow">🟡 Normal task</li>
+      <li class="blue">🔵 Light task</li>
+    </ul>
+
+    <div id="gentle-reminder">
+      <p>No reminders today 🌱</p>
+    </div>
+  </section>
+
+  <!-- GRAPHS CAROUSEL -->
+  <section class="graphs">
+    <h3>Summary</h3>
+
+    <div class="carousel">
+      <div class="graph-card glass">Mood Trend</div>
+      <div class="graph-card glass">Stress vs Sleep</div>
+      <div class="graph-card glass">Cycle Correlation</div>
+      <div class="graph-card glass">Productivity vs Stress</div>
+    </div>
+  </section>
+
+<section class="quick-actions">
+  <button onclick="location.href='checkin.html'">➕ Check-in</button>
+  <button onclick="location.href='todo.html'">📝 To-Do</button>
+  <button onclick="location.href='calendar.html'">📅 Calendar</button>
+    <button onclick="location.href='habits.html'">✅ Habits</button>
+  <button onclick="location.href='focus.html'">⏱️ Focus</button>
+  <button onclick="location.href='period.html'">🌸 Periods</button>
+
+</section>
+
+
+
+  </section>
+
+</main>
+
+<script type="module" src="js/common.js"></script>
+<script type="module" src="js/dashboard.js"></script>
+<script type="module" src="js/reminders.js"></script>
+
+
+
+</body>
+</html>

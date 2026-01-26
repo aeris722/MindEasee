@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Habits | MindEase</title>
+
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/ui.css" />
+
+  <style>
+    .habit-card {
+      padding: 16px;
+      margin-bottom: 16px;
+      border-radius: 16px;
+    }
+
+    .habit-header {
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .days {
+      display: flex;
+      gap: 10px;
+    }
+
+    .day {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid #cbd5f5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      user-select: none;
+      transition: all 0.2s ease;
+    }
+
+    .day.done {
+      background: #6366f1;
+      color: white;
+      border-color: #6366f1;
+    }
+  </style>
+</head>
+
+<body>
+
+<header class="topbar">
+  <h2>Habits</h2>
+  <button onclick="location.href='dashboard.html'">← Back</button>
+</header>
+
+<main class="dashboard">
+
+  <!-- ADD HABIT -->
+  <section class="glass">
+    <h3>Add Habit</h3>
+    <input id="habitInput" placeholder="Habit name (e.g. Drink Water)" />
+    <button id="addHabitBtn">Add</button>
+  </section>
+
+  <!-- HABITS LIST -->
+  <section id="habitsContainer"></section>
+
+</main>
+
+<script src="js/habits.js"></script>
+</body>
+</html>
