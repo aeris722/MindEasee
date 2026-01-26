@@ -1,5 +1,5 @@
 // --------------------
-// HABITS WITH DAILY CHECKS
+// HABITS WITH DAILY CHECKS WITH DAYS AND CHECK BOXES
 // --------------------
 
 const habitInput = document.getElementById("habitInput");
