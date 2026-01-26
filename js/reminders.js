@@ -16,7 +16,7 @@ auth.onAuthStateChanged(async user => {
   await generateReminders();
 });
 
-/* ---------- CORE LOGIC (RULE-BASED v1) ---------- */
+/* ---------- CORE LOGIC (RULE-BASED v1) ----------Which will be not  implimented */
 async function generateReminders() {
   // Check last 3 check-ins
   const checkinsSnap = await getDocs(
