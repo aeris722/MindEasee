@@ -8,7 +8,7 @@ import {
 
 /* 🔴 PASTE YOUR FIREBASE CONFIG HERE */
 const firebaseConfig = {
-  apiKey: "AIzaSyCcYEEa9JOMWBZ0MkFJceX7z7iDwaRzle0",
+  apiKey: "                         ",
   authDomain: "mindease-bb9e4.firebaseapp.com",
   projectId: "mindease-bb9e4",
   storageBucket: "mindease-bb9e4.firebasestorage.app",
