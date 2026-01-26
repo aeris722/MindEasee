@@ -14,7 +14,7 @@ const historyEl = document.getElementById("period-history");
 
 let uid = null;
 
-/* AUTH */
+/* AUTH- For trail case only */
 auth.onAuthStateChanged(user => {
   if (!user) return;
   uid = user.uid;
