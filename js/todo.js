@@ -20,7 +20,7 @@ function getLocalDate() {
   return `${year}-${month}-${day}`;
 }
 
-/* ---------- ELEMENTS ---------- */
+/* ---------- ELEMENTS ------------------------- */
 const textEl = document.getElementById("task-text");
 const priorityEl = document.getElementById("task-priority");
 const dateEl = document.getElementById("task-date"); // optional calendar date
