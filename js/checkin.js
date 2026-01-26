@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let selectedMood = null;
 
-  /* ---------- MOOD SELECTION ---------- */
+  /* ---------- MOOD SELECTION ----------😄😆😎🙄😶😔😓😖😞 */
   document.querySelectorAll(".mood-options button").forEach(btn => {
     btn.onclick = () => {
       selectedMood = btn.dataset.mood;
