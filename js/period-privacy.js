@@ -7,7 +7,7 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 const deleteBtn = document.getElementById("delete-period-data");
-
+/* This may not be private due to no encrytption with firebase */
 let uid = null;
 
 auth.onAuthStateChanged(user => {
