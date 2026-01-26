@@ -16,7 +16,7 @@ const listEl = document.getElementById("journal-list");
 let currentUser = null;
 let unsubscribeJournal = null;
 
-/* ---------- AUTH READY ---------- */
+/* ---------- AUTH READY ----------TRail basis only */
 auth.onAuthStateChanged(async user => {
   // Cleanup previous listener if exists
   if (unsubscribeJournal) {
