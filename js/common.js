@@ -10,7 +10,7 @@ import { getFirestore } from "https://www.gstatic.com/firebasejs/10.7.1/firebase
 
 /* 🔴 SAME firebaseConfig AS auth.js */
 const firebaseConfig = {
-  apiKey: "AIzaSyCcYEEa9JOMWBZ0MkFJceX7z7iDwaRzle0",
+  apiKey: "              ",
   authDomain: "mindease-bb9e4.firebaseapp.com",
   projectId: "mindease-bb9e4",
   appId: "1:92953988198:web:d8c17ee0149be4d258f1a7",
