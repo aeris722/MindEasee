@@ -64,7 +64,7 @@ auth.onAuthStateChanged(async user => {
   }
 });
 
-/* ---------- EDIT & SAVE QUOTE ---------- */
+/* ---------- EDIT & SAVE QUOTE ----------WHIOCH CAN BE CHANGED */
 document.getElementById("edit-quote").onclick = () => {
   auth.onAuthStateChanged(async user => {
     if (!user) {
