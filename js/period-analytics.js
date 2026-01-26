@@ -13,7 +13,7 @@ const painInsightEl = document.getElementById("pain-insight");
 const moodSummaryEl = document.getElementById("mood-summary");
 
 let uid = null;
-
+/* Here ML will be used to analyze later */
 /* ---------- AUTH ---------- */
 auth.onAuthStateChanged(user => {
   if (!user) return;
