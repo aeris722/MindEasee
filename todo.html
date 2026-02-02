@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tasks | MindEase</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+  <nav class="nav-sidebar" id="sidebar">
+    <div class="nav-brand">
+      <div class="nav-logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+      <span class="nav-title">MindEase</span>
+    </div>
+    <div class="nav-menu">
+      <div class="nav-section">
+        <div class="nav-section-title">Main</div>
+        <a href="dashboard.html" class="nav-link"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span><span>Dashboard</span></a>
+        <a href="checkin.html" class="nav-link"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg></span><span>Check-in</span></a>
+        <a href="todo.html" class="nav-link active"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span><span>Tasks</span></a>
+        <a href="habits.html" class="nav-link"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></span><span>Habits</span></a>
+        <a href="focus.html" class="nav-link"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span><span>Focus</span></a>
+      </div>
+      <div class="nav-section">
+        <div class="nav-section-title">Wellness</div>
+        <a href="journal.html" class="nav-link"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></span><span>Journal</span></a>
+        <a href="calendar.html" class="nav-link"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span><span>Calendar</span></a>
+        <a href="analytics.html" class="nav-link"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 20V10M12 20V4M6 20v-6"/></svg></span><span>Analytics</span></a>
+      </div>
+    </div>
+    <div class="nav-footer"><a href="profile.html" class="nav-user"><div class="nav-avatar" id="userAvatar">U</div><div class="nav-user-info"><div class="nav-user-name" id="navUserName">User</div><div class="nav-user-email" id="navUserEmail">email</div></div></a></div>
+  </nav>
+  <div class="nav-overlay" id="navOverlay" onclick="toggleSidebar()"></div>
+
+  <header class="mobile-header">
+    <button class="menu-toggle" onclick="toggleSidebar()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+    <span class="mobile-title">Tasks</span>
+    <button class="theme-toggle" onclick="toggleTheme()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" id="themeIcon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button>
+  </header>
+
+  <main class="main-content">
+    <div class="page-header">
+      <h1>Tasks</h1>
+      <p class="text-muted">Stay organized and get things done</p>
+    </div>
+
+    <div class="stats-row mb-6">
+      <div class="stat-card">
+        <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg></div>
+        <div class="stat-value" id="totalTasks">0</div>
+        <div class="stat-label">Total</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon" style="background:var(--success-light);color:var(--success);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+        <div class="stat-value" id="completedTasks">0</div>
+        <div class="stat-label">Done</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon" style="background:var(--info-light);color:var(--info);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
+        <div class="stat-value" id="todayTasks">0</div>
+        <div class="stat-label">Today</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon" style="background:var(--error-light);color:var(--error);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
+        <div class="stat-value" id="highPriority">0</div>
+        <div class="stat-label">Urgent</div>
+      </div>
+    </div>
+
+    <section class="card mb-6">
+      <h3 class="card-title">Add New Task</h3>
+      <div class="task-form">
+        <div class="form-row"><input type="text" id="taskText" placeholder="What do you need to do?" maxlength="100"></div>
+        <div class="form-row-inline">
+          <select id="taskPriority">
+            <option value="red">High Priority</option>
+            <option value="yellow" selected>Medium Priority</option>
+            <option value="blue">Low Priority</option>
+          </select>
+          <input type="date" id="taskDate">
+          <button class="btn" onclick="addTask()">Add</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="card mb-6">
+      <div class="filter-row">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="today">Today</button>
+        <button class="filter-btn" data-filter="pending">Pending</button>
+        <button class="filter-btn" data-filter="completed">Completed</button>
+      </div>
+    </section>
+
+    <section class="card">
+      <h3 class="card-title">Your Tasks</h3>
+      <div id="tasksList">
+        <div class="empty-state">
+          <div class="empty-state-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+          <div class="empty-state-title">All clear!</div>
+          <p class="text-sm text-muted">Add a task above to get started</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="toast-container" id="toastContainer"></div>
+
+  <style>
+    .task-form { display: flex; flex-direction: column; gap: var(--space-3); }
+    .form-row input { width: 100%; }
+    .form-row-inline { display: flex; gap: var(--space-3); flex-wrap: wrap; }
+    .form-row-inline select, .form-row-inline input[type="date"] { flex: 1; min-width: 140px; }
+    .form-row-inline .btn { flex-shrink: 0; }
+    .filter-row { display: flex; gap: var(--space-2); flex-wrap: wrap; }
+    .filter-btn { padding: var(--space-2) var(--space-4); border-radius: var(--radius-full); background: var(--bg-elevated); border: 1px solid var(--border-color); cursor: pointer; font-size: var(--text-sm); transition: all 0.2s ease; }
+    .filter-btn:hover { border-color: var(--primary); }
+    .filter-btn.active { background: var(--gradient-primary); color: white; border-color: transparent; }
+    .task-item { display: flex; align-items: center; gap: var(--space-3); padding: var(--space-3); background: var(--bg-elevated); border-radius: var(--radius-lg); margin-bottom: var(--space-2); transition: all 0.2s ease; }
+    .task-item:hover { transform: translateX(4px); }
+    .task-item.completed { opacity: 0.6; }
+    .task-item.completed .task-text { text-decoration: line-through; }
+    .task-checkbox { width: 22px; height: 22px; border-radius: 50%; border: 2px solid var(--border-color); cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.2s ease; }
+    .task-checkbox:hover { border-color: var(--primary); }
+    .task-checkbox.checked { background: var(--gradient-primary); border-color: transparent; color: white; }
+    .task-priority { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+    .task-priority.red { background: var(--error); }
+    .task-priority.yellow { background: #fbbf24; }
+    .task-priority.blue { background: var(--primary); }
+    .task-content { flex: 1; min-width: 0; }
+    .task-text { font-weight: 500; }
+    .task-date { font-size: var(--text-xs); color: var(--text-muted); margin-top: 2px; }
+    .task-delete { background: none; border: none; cursor: pointer; opacity: 0.5; padding: var(--space-1); }
+    .task-delete:hover { opacity: 1; transform: none; box-shadow: none; }
+  </style>
+
+  <script type="module">
+    import { auth, db, onAuthStateChanged, signOut, collection, addDoc, getDocs, updateDoc, deleteDoc, doc, getLocalDateString, Timestamp } from './js/config/firebase.js';
+    
+    let currentUser = null;
+    let tasks = [];
+    let currentFilter = 'all';
+    const today = getLocalDateString();
+    
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    document.getElementById('taskDate').value = today;
+    
+    onAuthStateChanged(auth, async (user) => {
+      if (!user) { window.location.href = 'index.html'; return; }
+      currentUser = user;
+      updateNavUser();
+      await loadTasks();
+    });
+    
+    async function loadTasks() {
+      try {
+        const snap = await getDocs(collection(db, 'users', currentUser.uid, 'tasks'));
+        tasks = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+        renderTasks();
+        updateStats();
+      } catch (e) {
+        console.error('Error loading tasks:', e);
+        showToast('Error loading tasks', 'error');
+      }
+    }
+    
+    function renderTasks() {
+      const container = document.getElementById('tasksList');
+      let filtered = [...tasks];
+      
+      if (currentFilter === 'today') filtered = filtered.filter(t => t.date === today);
+      else if (currentFilter === 'pending') filtered = filtered.filter(t => !t.completed);
+      else if (currentFilter === 'completed') filtered = filtered.filter(t => t.completed);
+      
+      const priorityOrder = { red: 0, yellow: 1, blue: 2 };
+      filtered.sort((a, b) => {
+        if (a.completed !== b.completed) return a.completed ? 1 : -1;
+        if (priorityOrder[a.priority] !== priorityOrder[b.priority]) return priorityOrder[a.priority] - priorityOrder[b.priority];
+        return (a.date || '').localeCompare(b.date || '');
+      });
+      
+      if (filtered.length === 0) {
+        const emptyIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>';
+        container.innerHTML = `<div class="empty-state"><div class="empty-state-icon">${emptyIcon}</div><div class="empty-state-title">${currentFilter === 'completed' ? 'Nothing completed yet' : 'All clear!'}</div><p class="text-sm text-muted">${currentFilter === 'all' ? 'Add a task above to get started' : 'No tasks match this filter'}</p></div>`;
+        return;
+      }
+      
+      container.innerHTML = filtered.map(t => {
+        const dateDisplay = t.date === today ? 'Today' : t.date ? new Date(t.date + 'T00:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) : '';
+        const deleteIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:18px;height:18px;"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>';
+        return `<div class="task-item ${t.completed ? 'completed' : ''}" data-id="${t.id}"><div class="task-checkbox ${t.completed ? 'checked' : ''}" onclick="toggleTask('${t.id}')">${t.completed ? '✓' : ''}</div><div class="task-priority ${t.priority}"></div><div class="task-content"><div class="task-text">${t.text}</div>${dateDisplay ? `<div class="task-date">${dateDisplay}</div>` : ''}</div><button class="task-delete" onclick="deleteTask('${t.id}')">${deleteIcon}</button></div>`;
+      }).join('');
+    }
+    
+    function updateStats() {
+      document.getElementById('totalTasks').textContent = tasks.length;
+      document.getElementById('completedTasks').textContent = tasks.filter(t => t.completed).length;
+      document.getElementById('todayTasks').textContent = tasks.filter(t => t.date === today && !t.completed).length;
+      document.getElementById('highPriority').textContent = tasks.filter(t => t.priority === 'red' && !t.completed).length;
+    }
+    
+    window.addTask = async function() {
+      const text = document.getElementById('taskText').value.trim();
+      if (!text) { showToast('Enter a task', 'error'); return; }
+      
+      try {
+        await addDoc(collection(db, 'users', currentUser.uid, 'tasks'), {
+          text,
+          priority: document.getElementById('taskPriority').value,
+          date: document.getElementById('taskDate').value || today,
+          completed: false,
+          completedAt: null,
+          createdAt: Timestamp.now()
+        });
+        document.getElementById('taskText').value = '';
+        await loadTasks();
+        showToast('Task added!', 'success');
+      } catch (e) {
+        console.error('Error adding task:', e);
+        showToast('Failed to add task', 'error');
+      }
+    };
+    
+    window.toggleTask = async function(taskId) {
+      const task = tasks.find(t => t.id === taskId);
+      if (!task) return;
+      try {
+        await updateDoc(doc(db, 'users', currentUser.uid, 'tasks', taskId), {
+          completed: !task.completed,
+          completedAt: !task.completed ? Timestamp.now() : null
+        });
+        task.completed = !task.completed;
+        renderTasks();
+        updateStats();
+      } catch (e) { showToast('Failed to update', 'error'); }
+    };
+    
+    window.deleteTask = async function(taskId) {
+      if (!confirm('Delete this task?')) return;
+      try {
+        await deleteDoc(doc(db, 'users', currentUser.uid, 'tasks', taskId));
+        await loadTasks();
+        showToast('Task deleted', 'success');
+      } catch (e) { showToast('Failed to delete', 'error'); }
+    };
+    
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.onclick = () => {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentFilter = btn.dataset.filter;
+        renderTasks();
+      };
+    });
+    
+    document.getElementById('taskText').addEventListener('keypress', e => { if (e.key === 'Enter') addTask(); });
+    
+    function showToast(msg, type='info') {
+      const t = document.createElement('div');
+      t.className = `toast toast-${type}`;
+      t.textContent = msg;
+      document.getElementById('toastContainer').appendChild(t);
+      setTimeout(() => t.remove(), 3000);
+    }
+    
+    window.toggleTheme = function() {
+      const n = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', n);
+      localStorage.setItem('theme', n);
+    };
+    window.logout = async function() { await signOut(auth); window.location.href = 'index.html'; };
+    window.toggleSidebar = function() { 
+      document.getElementById('sidebar').classList.toggle('open'); 
+      document.getElementById('navOverlay').classList.toggle('show');
+    };
+    
+    // Update user info in nav
+    function updateNavUser() {
+      if (currentUser) {
+        const name = currentUser.displayName || 'User';
+        document.getElementById('navUserName').textContent = name;
+        document.getElementById('navUserEmail').textContent = currentUser.email;
+        document.getElementById('userAvatar').textContent = name.charAt(0).toUpperCase();
+      }
+    }
+  </script>
+</body>
+</html>

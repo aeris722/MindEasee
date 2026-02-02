@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Period Tracker | MindEase</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+  <nav class="nav-sidebar" id="sidebar">
+    <div class="nav-brand"><span class="nav-logo">🌿</span><span class="nav-title">MindEase</span></div>
+    <div class="nav-menu">
+      <a href="dashboard.html" class="nav-link"><span class="nav-icon">🏠</span><span>Dashboard</span></a>
+      <a href="checkin.html" class="nav-link"><span class="nav-icon">💭</span><span>Check-in</span></a>
+      <a href="todo.html" class="nav-link"><span class="nav-icon">📝</span><span>Tasks</span></a>
+      <a href="habits.html" class="nav-link"><span class="nav-icon">✅</span><span>Habits</span></a>
+      <a href="focus.html" class="nav-link"><span class="nav-icon">⏱️</span><span>Focus</span></a>
+      <a href="journal.html" class="nav-link"><span class="nav-icon">📔</span><span>Journal</span></a>
+      <a href="calendar.html" class="nav-link"><span class="nav-icon">📅</span><span>Calendar</span></a>
+      <a href="analytics.html" class="nav-link"><span class="nav-icon">📊</span><span>Analytics</span></a>
+      <a href="profile.html" class="nav-link"><span class="nav-icon">👤</span><span>Profile</span></a>
+    </div>
+    <div class="nav-footer"><button class="btn btn-ghost w-full" onclick="logout()"><span>🚪</span> Sign Out</button></div>
+  </nav>
+
+  <header class="mobile-header">
+    <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+    <span class="mobile-title">Period Tracker</span>
+    <button class="btn-icon btn-ghost" onclick="toggleTheme()">🌙</button>
+  </header>
+
+  <main class="main-content">
+    <div class="page-header">
+      <h1>🌸 Period Tracker</h1>
+      <p class="text-muted">Track your cycle privately and securely</p>
+    </div>
+
+    <!-- Summary Stats -->
+    <div class="stats-row mb-6">
+      <div class="stat-card">
+        <div class="stat-icon">📊</div>
+        <div class="stat-value" id="avgCycle">--</div>
+        <div class="stat-label">Avg Cycle</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">📅</div>
+        <div class="stat-value" id="lastPeriod">--</div>
+        <div class="stat-label">Last Period</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">🔮</div>
+        <div class="stat-value" id="nextPeriod">--</div>
+        <div class="stat-label">Next (est.)</div>
+      </div>
+    </div>
+
+    <!-- Log Period -->
+    <section class="glass mb-6">
+      <h3>📝 Log Period</h3>
+      <div class="period-form">
+        <div class="form-group">
+          <label>Start Date</label>
+          <input type="date" id="startDate">
+        </div>
+        <div class="form-group">
+          <label>End Date <span class="text-muted text-sm">(optional)</span></label>
+          <input type="date" id="endDate">
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Flow</label>
+            <select id="flow">
+              <option value="">Select</option>
+              <option value="light">🩸 Light</option>
+              <option value="medium">🩸🩸 Medium</option>
+              <option value="heavy">🩸🩸🩸 Heavy</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Mood</label>
+            <select id="mood">
+              <option value="">Select</option>
+              <option value="calm">😌 Calm</option>
+              <option value="low">😔 Low</option>
+              <option value="irritable">😤 Irritable</option>
+              <option value="anxious">😰 Anxious</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Pain Level</label>
+          <div class="slider-row">
+            <span>😊</span>
+            <input type="range" id="pain" min="0" max="10" value="0">
+            <span>😣</span>
+            <span class="slider-value" id="painValue">0</span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Notes <span class="text-muted text-sm">(optional)</span></label>
+          <textarea id="notes" rows="2" placeholder="Any symptoms, feelings, or notes..."></textarea>
+        </div>
+        <button class="btn" onclick="savePeriod()">Save Entry</button>
+      </div>
+    </section>
+
+    <!-- History -->
+    <section class="glass mb-6">
+      <h3>📜 History</h3>
+      <div id="periodHistory">
+        <div class="empty-state">
+          <div class="empty-state-icon">🌸</div>
+          <div class="empty-state-title">No entries yet</div>
+          <p class="text-sm text-muted">Log your first period to start tracking</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Privacy -->
+    <section class="glass">
+      <h3>🔒 Privacy & Control</h3>
+      <p class="text-muted text-sm mb-4">Your period data is stored privately under your account. You are always in control.</p>
+      <button class="btn btn-danger" onclick="deleteAllData()">🗑️ Delete All Period Data</button>
+      <p class="text-xs text-muted mt-2">This action cannot be undone.</p>
+    </section>
+  </main>
+
+  <div class="toast-container" id="toastContainer"></div>
+
+  <style>
+    .period-form { display: flex; flex-direction: column; gap: var(--space-4); }
+    .form-group { display: flex; flex-direction: column; gap: var(--space-1); }
+    .form-group label { font-weight: 500; font-size: var(--text-sm); }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); }
+    @media (max-width: 480px) { .form-row { grid-template-columns: 1fr; } }
+    
+    .slider-row { display: flex; align-items: center; gap: var(--space-3); }
+    .slider-row input { flex: 1; }
+    .slider-value { min-width: 24px; font-weight: 600; color: var(--primary); }
+    
+    .period-entry { padding: var(--space-4); background: var(--glass-bg); border-radius: var(--radius-lg); margin-bottom: var(--space-3); }
+    .period-entry-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-2); }
+    .period-entry-date { font-weight: 600; }
+    .period-entry-flow { font-size: var(--text-sm); }
+    .period-entry-details { display: flex; gap: var(--space-4); flex-wrap: wrap; font-size: var(--text-sm); color: var(--text-muted); }
+    .period-entry-notes { margin-top: var(--space-2); font-size: var(--text-sm); font-style: italic; }
+    .period-entry-delete { background: none; border: none; cursor: pointer; opacity: 0.5; }
+    .period-entry-delete:hover { opacity: 1; transform: none; box-shadow: none; }
+    
+    .btn-danger { background: var(--error); color: white; }
+    .btn-danger:hover { background: #dc2626; transform: none; box-shadow: none; }
+  </style>
+
+  <script type="module">
+    import { auth, db, onAuthStateChanged, signOut, collection, addDoc, getDocs, deleteDoc, doc, query, orderBy, getLocalDateString, Timestamp } from './js/config/firebase.js';
+    
+    let currentUser = null;
+    let periods = [];
+    const today = getLocalDateString();
+    
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    
+    document.getElementById('startDate').value = today;
+    
+    // Pain slider
+    document.getElementById('pain').oninput = (e) => {
+      document.getElementById('painValue').textContent = e.target.value;
+    };
+    
+    onAuthStateChanged(auth, async (user) => {
+      if (!user) { window.location.href = 'index.html'; return; }
+      currentUser = user;
+      await loadPeriods();
+    });
+    
+    async function loadPeriods() {
+      try {
+        const q = query(collection(db, 'users', currentUser.uid, 'periods'), orderBy('startDate', 'desc'));
+        const snap = await getDocs(q);
+        periods = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+        renderHistory();
+        updateStats();
+      } catch (e) {
+        console.error('Error loading periods:', e);
+        showToast('Error loading data', 'error');
+      }
+    }
+    
+    function renderHistory() {
+      const container = document.getElementById('periodHistory');
+      
+      if (periods.length === 0) {
+        container.innerHTML = `
+          <div class="empty-state">
+            <div class="empty-state-icon">🌸</div>
+            <div class="empty-state-title">No entries yet</div>
+            <p class="text-sm text-muted">Log your first period to start tracking</p>
+          </div>
+        `;
+        return;
+      }
+      
+      container.innerHTML = periods.map(p => {
+        const startDate = new Date(p.startDate + 'T00:00:00');
+        const endStr = p.endDate ? ` - ${new Date(p.endDate + 'T00:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}` : '';
+        const flowEmoji = p.flow === 'heavy' ? '🩸🩸🩸' : p.flow === 'medium' ? '🩸🩸' : p.flow === 'light' ? '🩸' : '';
+        const moodEmoji = { calm: '😌', low: '😔', irritable: '😤', anxious: '😰' };
+        
+        return `
+          <div class="period-entry">
+            <div class="period-entry-header">
+              <span class="period-entry-date">${startDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}${endStr}</span>
+              <button class="period-entry-delete" onclick="deletePeriod('${p.id}')">🗑️</button>
+            </div>
+            <div class="period-entry-details">
+              ${p.flow ? `<span>${flowEmoji} ${p.flow}</span>` : ''}
+              ${p.mood ? `<span>${moodEmoji[p.mood] || ''} ${p.mood}</span>` : ''}
+              ${p.pain > 0 ? `<span>Pain: ${p.pain}/10</span>` : ''}
+            </div>
+            ${p.notes ? `<div class="period-entry-notes">"${p.notes}"</div>` : ''}
+          </div>
+        `;
+      }).join('');
+    }
+    
+    function updateStats() {
+      // Average cycle length
+      if (periods.length >= 2) {
+        let totalDays = 0;
+        let count = 0;
+        for (let i = 0; i < periods.length - 1; i++) {
+          const current = new Date(periods[i].startDate);
+          const next = new Date(periods[i + 1].startDate);
+          const diff = Math.round((current - next) / (1000 * 60 * 60 * 24));
+          if (diff > 0 && diff < 60) {
+            totalDays += diff;
+            count++;
+          }
+        }
+        if (count > 0) {
+          document.getElementById('avgCycle').textContent = Math.round(totalDays / count) + ' days';
+        }
+      }
+      
+      // Last period
+      if (periods.length > 0) {
+        const last = new Date(periods[0].startDate + 'T00:00:00');
+        const daysAgo = Math.round((new Date() - last) / (1000 * 60 * 60 * 24));
+        document.getElementById('lastPeriod').textContent = daysAgo === 0 ? 'Today' : daysAgo + 'd ago';
+        
+        // Predicted next
+        const avgCycle = periods.length >= 2 ? parseInt(document.getElementById('avgCycle').textContent) || 28 : 28;
+        const nextDate = new Date(last);
+        nextDate.setDate(nextDate.getDate() + avgCycle);
+        const daysUntil = Math.round((nextDate - new Date()) / (1000 * 60 * 60 * 24));
+        document.getElementById('nextPeriod').textContent = daysUntil <= 0 ? 'Soon' : 'in ' + daysUntil + 'd';
+      }
+    }
+    
+    window.savePeriod = async function() {
+      const startDate = document.getElementById('startDate').value;
+      if (!startDate) {
+        showToast('Please select a start date', 'error');
+        return;
+      }
+      
+      const data = {
+        startDate,
+        endDate: document.getElementById('endDate').value || null,
+        flow: document.getElementById('flow').value || null,
+        mood: document.getElementById('mood').value || null,
+        pain: Number(document.getElementById('pain').value),
+        notes: document.getElementById('notes').value.trim() || null,
+        createdAt: Timestamp.now()
+      };
+      
+      try {
+        await addDoc(collection(db, 'users', currentUser.uid, 'periods'), data);
+        
+        // Reset form
+        document.getElementById('endDate').value = '';
+        document.getElementById('flow').value = '';
+        document.getElementById('mood').value = '';
+        document.getElementById('pain').value = '0';
+        document.getElementById('painValue').textContent = '0';
+        document.getElementById('notes').value = '';
+        
+        await loadPeriods();
+        showToast('Entry saved!', 'success');
+      } catch (e) {
+        console.error('Error saving period:', e);
+        showToast('Failed to save', 'error');
+      }
+    };
+    
+    window.deletePeriod = async function(periodId) {
+      if (!confirm('Delete this entry?')) return;
+      
+      try {
+        await deleteDoc(doc(db, 'users', currentUser.uid, 'periods', periodId));
+        await loadPeriods();
+        showToast('Entry deleted', 'success');
+      } catch (e) {
+        console.error('Error deleting:', e);
+        showToast('Failed to delete', 'error');
+      }
+    };
+    
+    window.deleteAllData = async function() {
+      if (!confirm('Delete ALL period data? This cannot be undone.')) return;
+      if (!confirm('Are you sure? This will permanently delete all your period tracking history.')) return;
+      
+      try {
+        for (const p of periods) {
+          await deleteDoc(doc(db, 'users', currentUser.uid, 'periods', p.id));
+        }
+        await loadPeriods();
+        showToast('All data deleted', 'success');
+      } catch (e) {
+        console.error('Error deleting all:', e);
+        showToast('Failed to delete', 'error');
+      }
+    };
+    
+    function showToast(msg, type='info') {
+      const t = document.createElement('div');
+      t.className = `toast toast-${type}`;
+      t.textContent = msg;
+      document.getElementById('toastContainer').appendChild(t);
+      setTimeout(() => t.remove(), 3000);
+    }
+    
+    window.toggleTheme = function() {
+      const n = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', n);
+      localStorage.setItem('theme', n);
+    };
+    window.logout = async function() { await signOut(auth); window.location.href = 'index.html'; };
+    window.toggleSidebar = function() { document.getElementById('sidebar').classList.toggle('open'); };
+  </script>
+</body>
+</html>

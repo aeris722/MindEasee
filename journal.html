@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Journal | MindEase</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+  <nav class="nav-sidebar" id="sidebar">
+    <div class="nav-brand"><span class="nav-logo">🌿</span><span class="nav-title">MindEase</span></div>
+    <div class="nav-menu">
+      <a href="dashboard.html" class="nav-link"><span class="nav-icon">🏠</span><span>Dashboard</span></a>
+      <a href="checkin.html" class="nav-link"><span class="nav-icon">💭</span><span>Check-in</span></a>
+      <a href="todo.html" class="nav-link"><span class="nav-icon">📝</span><span>Tasks</span></a>
+      <a href="habits.html" class="nav-link"><span class="nav-icon">✅</span><span>Habits</span></a>
+      <a href="focus.html" class="nav-link"><span class="nav-icon">⏱️</span><span>Focus</span></a>
+      <a href="journal.html" class="nav-link active"><span class="nav-icon">📔</span><span>Journal</span></a>
+      <a href="calendar.html" class="nav-link"><span class="nav-icon">📅</span><span>Calendar</span></a>
+      <a href="analytics.html" class="nav-link"><span class="nav-icon">📊</span><span>Analytics</span></a>
+      <a href="profile.html" class="nav-link"><span class="nav-icon">👤</span><span>Profile</span></a>
+    </div>
+    <div class="nav-footer"><button class="btn btn-ghost w-full" onclick="logout()"><span>🚪</span> Sign Out</button></div>
+  </nav>
+
+  <header class="mobile-header">
+    <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+    <span class="mobile-title">Journal</span>
+    <button class="btn-icon btn-ghost" onclick="toggleTheme()">🌙</button>
+  </header>
+
+  <main class="main-content">
+    <div class="page-header">
+      <h1>📔 Journal</h1>
+      <p class="text-muted">Write freely, this is your private space</p>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats-row mb-6">
+      <div class="stat-card">
+        <div class="stat-icon">📝</div>
+        <div class="stat-value" id="totalEntries">0</div>
+        <div class="stat-label">Entries</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">🔥</div>
+        <div class="stat-value" id="currentStreak">0</div>
+        <div class="stat-label">Day Streak</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">📅</div>
+        <div class="stat-value" id="thisWeek">0</div>
+        <div class="stat-label">This Week</div>
+      </div>
+    </div>
+
+    <!-- New Entry -->
+    <section class="glass mb-6">
+      <h3>✍️ Write a New Entry</h3>
+      <div class="journal-form">
+        <textarea id="journalText" rows="6" placeholder="What's on your mind? Write about your day, thoughts, feelings, or anything you want to remember..."></textarea>
+        <div class="journal-options">
+          <div class="mood-select">
+            <label>Mood tag (optional)</label>
+            <select id="journalMood">
+              <option value="">None</option>
+              <option value="Happy">😊 Happy</option>
+              <option value="Grateful">🙏 Grateful</option>
+              <option value="Calm">😌 Calm</option>
+              <option value="Excited">🎉 Excited</option>
+              <option value="Stressed">😖 Stressed</option>
+              <option value="Sad">😔 Sad</option>
+              <option value="Anxious">😰 Anxious</option>
+              <option value="Reflective">🤔 Reflective</option>
+            </select>
+          </div>
+          <button class="btn" onclick="saveEntry()">Save Entry</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Prompts -->
+    <section class="glass mb-6">
+      <h3>💡 Writing Prompts</h3>
+      <p class="text-muted text-sm mb-3">Need inspiration? Click a prompt to start writing</p>
+      <div class="prompts-grid" id="promptsGrid"></div>
+    </section>
+
+    <!-- Past Entries -->
+    <section class="glass">
+      <div class="section-header">
+        <h3>📚 Past Entries</h3>
+        <select id="filterMood" class="filter-select">
+          <option value="">All moods</option>
+          <option value="Happy">😊 Happy</option>
+          <option value="Grateful">🙏 Grateful</option>
+          <option value="Calm">😌 Calm</option>
+          <option value="Stressed">😖 Stressed</option>
+          <option value="Sad">😔 Sad</option>
+        </select>
+      </div>
+      <div id="entriesList">
+        <div class="empty-state">
+          <div class="empty-state-icon">📔</div>
+          <div class="empty-state-title">No entries yet</div>
+          <p class="text-sm text-muted">Start journaling to see your entries here</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="toast-container" id="toastContainer"></div>
+
+  <style>
+    .journal-form textarea { width: 100%; margin-bottom: var(--space-3); resize: vertical; min-height: 120px; }
+    .journal-options { display: flex; gap: var(--space-4); align-items: flex-end; flex-wrap: wrap; }
+    .mood-select { flex: 1; min-width: 150px; }
+    .mood-select label { display: block; font-size: var(--text-sm); margin-bottom: var(--space-1); color: var(--text-muted); }
+    
+    .prompts-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-2); }
+    .prompt-btn { padding: var(--space-3); background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: var(--radius-md); cursor: pointer; text-align: left; font-size: var(--text-sm); transition: all 0.2s ease; }
+    .prompt-btn:hover { border-color: var(--primary); background: var(--glass-bg-hover); transform: none; box-shadow: none; }
+    
+    .filter-select { padding: var(--space-2) var(--space-3); border-radius: var(--radius-md); border: 1px solid var(--glass-border); background: var(--glass-bg); font-size: var(--text-sm); }
+    
+    .entry-card { padding: var(--space-4); background: var(--glass-bg); border-radius: var(--radius-lg); margin-bottom: var(--space-3); }
+    .entry-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-2); }
+    .entry-date { font-size: var(--text-sm); color: var(--text-muted); }
+    .entry-mood { font-size: var(--text-sm); padding: var(--space-1) var(--space-2); background: var(--glass-bg-hover); border-radius: var(--radius-full); }
+    .entry-text { line-height: 1.6; white-space: pre-wrap; }
+    .entry-actions { margin-top: var(--space-3); display: flex; gap: var(--space-2); }
+    .entry-delete { background: none; border: none; cursor: pointer; font-size: var(--text-sm); color: var(--text-muted); padding: var(--space-1); }
+    .entry-delete:hover { color: var(--error); transform: none; box-shadow: none; }
+  </style>
+
+  <script type="module">
+    import { auth, db, onAuthStateChanged, signOut, collection, addDoc, getDocs, deleteDoc, doc, query, orderBy, getLocalDateString, Timestamp } from './js/config/firebase.js';
+    
+    let currentUser = null;
+    let entries = [];
+    const today = getLocalDateString();
+    
+    const prompts = [
+      "What made you smile today?",
+      "What are you grateful for?",
+      "What's something you learned recently?",
+      "How are you really feeling right now?",
+      "What's one thing you'd like to improve?",
+      "Describe your perfect day",
+      "What's worrying you the most?",
+      "What accomplishment are you proud of?"
+    ];
+    
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    
+    // Render prompts
+    document.getElementById('promptsGrid').innerHTML = prompts.map(p => 
+      `<button class="prompt-btn" onclick="usePrompt('${p}')">${p}</button>`
+    ).join('');
+    
+    onAuthStateChanged(auth, async (user) => {
+      if (!user) { window.location.href = 'index.html'; return; }
+      currentUser = user;
+      await loadEntries();
+    });
+    
+    async function loadEntries() {
+      try {
+        const q = query(collection(db, 'users', currentUser.uid, 'journal'), orderBy('createdAt', 'desc'));
+        const snap = await getDocs(q);
+        entries = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+        renderEntries();
+        updateStats();
+      } catch (e) {
+        console.error('Error loading entries:', e);
+        showToast('Error loading entries', 'error');
+      }
+    }
+    
+    function renderEntries(filter = '') {
+      const container = document.getElementById('entriesList');
+      let filtered = filter ? entries.filter(e => e.mood === filter) : entries;
+      
+      if (filtered.length === 0) {
+        container.innerHTML = `
+          <div class="empty-state">
+            <div class="empty-state-icon">📔</div>
+            <div class="empty-state-title">${filter ? 'No entries with this mood' : 'No entries yet'}</div>
+            <p class="text-sm text-muted">${filter ? 'Try a different filter' : 'Start journaling to see your entries here'}</p>
+          </div>
+        `;
+        return;
+      }
+      
+      container.innerHTML = filtered.map(e => {
+        const date = e.createdAt?.seconds ? new Date(e.createdAt.seconds * 1000) : new Date();
+        const moodEmoji = { Happy: '😊', Grateful: '🙏', Calm: '😌', Excited: '🎉', Stressed: '😖', Sad: '😔', Anxious: '😰', Reflective: '🤔' };
+        
+        return `
+          <div class="entry-card">
+            <div class="entry-header">
+              <span class="entry-date">${date.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' })} at ${date.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' })}</span>
+              ${e.mood ? `<span class="entry-mood">${moodEmoji[e.mood] || ''} ${e.mood}</span>` : ''}
+            </div>
+            <div class="entry-text">${e.text}</div>
+            <div class="entry-actions">
+              <button class="entry-delete" onclick="deleteEntry('${e.id}')">🗑️ Delete</button>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+    
+    function updateStats() {
+      document.getElementById('totalEntries').textContent = entries.length;
+      
+      // Calculate streak
+      let streak = 0;
+      const entryDates = new Set(entries.map(e => {
+        const d = e.createdAt?.seconds ? new Date(e.createdAt.seconds * 1000) : new Date();
+        return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+      }));
+      
+      for (let i = 0; i < 365; i++) {
+        const d = new Date();
+        d.setDate(d.getDate() - i);
+        const dateStr = `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+        if (entryDates.has(dateStr)) {
+          streak++;
+        } else if (i > 0) {
+          break;
+        }
+      }
+      document.getElementById('currentStreak').textContent = streak;
+      
+      // This week
+      const weekAgo = new Date();
+      weekAgo.setDate(weekAgo.getDate() - 7);
+      const thisWeek = entries.filter(e => {
+        const d = e.createdAt?.seconds ? new Date(e.createdAt.seconds * 1000) : new Date();
+        return d >= weekAgo;
+      }).length;
+      document.getElementById('thisWeek').textContent = thisWeek;
+    }
+    
+    window.usePrompt = function(prompt) {
+      document.getElementById('journalText').value = prompt + '\n\n';
+      document.getElementById('journalText').focus();
+    };
+    
+    window.saveEntry = async function() {
+      const text = document.getElementById('journalText').value.trim();
+      if (!text) {
+        showToast('Write something first', 'error');
+        return;
+      }
+      
+      try {
+        await addDoc(collection(db, 'users', currentUser.uid, 'journal'), {
+          text,
+          mood: document.getElementById('journalMood').value || null,
+          createdAt: Timestamp.now()
+        });
+        
+        document.getElementById('journalText').value = '';
+        document.getElementById('journalMood').value = '';
+        await loadEntries();
+        showToast('Entry saved!', 'success');
+      } catch (e) {
+        console.error('Error saving entry:', e);
+        showToast('Failed to save entry', 'error');
+      }
+    };
+    
+    window.deleteEntry = async function(entryId) {
+      if (!confirm('Delete this entry?')) return;
+      
+      try {
+        await deleteDoc(doc(db, 'users', currentUser.uid, 'journal', entryId));
+        await loadEntries();
+        showToast('Entry deleted', 'success');
+      } catch (e) {
+        console.error('Error deleting entry:', e);
+        showToast('Failed to delete', 'error');
+      }
+    };
+    
+    // Filter
+    document.getElementById('filterMood').onchange = (e) => {
+      renderEntries(e.target.value);
+    };
+    
+    function showToast(msg, type='info') {
+      const t = document.createElement('div');
+      t.className = `toast toast-${type}`;
+      t.textContent = msg;
+      document.getElementById('toastContainer').appendChild(t);
+      setTimeout(() => t.remove(), 3000);
+    }
+    
+    window.toggleTheme = function() {
+      const n = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', n);
+      localStorage.setItem('theme', n);
+    };
+    window.logout = async function() { await signOut(auth); window.location.href = 'index.html'; };
+    window.toggleSidebar = function() { document.getElementById('sidebar').classList.toggle('open'); };
+  </script>
+</body>
+</html>

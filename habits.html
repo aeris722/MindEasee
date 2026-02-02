@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Habits | MindEase</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+  <nav class="nav-sidebar" id="sidebar">
+    <div class="nav-brand"><div class="nav-logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div><span class="nav-title">MindEase</span></div>
+    <div class="nav-menu">
+      <div class="nav-section"><div class="nav-section-title">Main</div>
+        <a href="dashboard.html" class="nav-link"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span><span>Dashboard</span></a>
+        <a href="checkin.html" class="nav-link"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg></span><span>Check-in</span></a>
+        <a href="todo.html" class="nav-link"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span><span>Tasks</span></a>
+        <a href="habits.html" class="nav-link active"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></span><span>Habits</span></a>
+        <a href="focus.html" class="nav-link"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span><span>Focus</span></a>
+      </div>
+      <div class="nav-section"><div class="nav-section-title">Wellness</div>
+        <a href="journal.html" class="nav-link"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></span><span>Journal</span></a>
+        <a href="calendar.html" class="nav-link"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span><span>Calendar</span></a>
+        <a href="analytics.html" class="nav-link"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 20V10M12 20V4M6 20v-6"/></svg></span><span>Analytics</span></a>
+      </div>
+    </div>
+    <div class="nav-footer"><a href="profile.html" class="nav-user"><div class="nav-avatar" id="userAvatar">U</div><div class="nav-user-info"><div class="nav-user-name" id="navUserName">User</div><div class="nav-user-email" id="navUserEmail">email</div></div></a></div>
+  </nav>
+  <div class="nav-overlay" id="navOverlay" onclick="toggleSidebar()"></div>
+
+  <header class="mobile-header">
+    <button class="menu-toggle" onclick="toggleSidebar()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+    <span class="mobile-title">Habits</span>
+    <button class="theme-toggle" onclick="toggleTheme()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" id="themeIcon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button>
+  </header>
+
+  <main class="main-content">
+    <div class="page-header">
+      <h1>Habit Tracker</h1>
+      <p class="text-muted">Build consistency, one day at a time</p>
+    </div>
+
+    <div class="stats-row mb-6">
+      <div class="stat-card">
+        <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
+        <div class="stat-value" id="totalHabits">0</div>
+        <div class="stat-label">Total Habits</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon" style="background:var(--success-light);color:var(--success);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+        <div class="stat-value" id="todayCompleted">0</div>
+        <div class="stat-label">Done Today</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon" style="background:var(--info-light);color:var(--info);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 20V10M12 20V4M6 20v-6"/></svg></div>
+        <div class="stat-value" id="weeklyRate">0%</div>
+        <div class="stat-label">Weekly Rate</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon" style="background:var(--warning-light);color:var(--warning);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg></div>
+        <div class="stat-value" id="longestStreak">0</div>
+        <div class="stat-label">Best Streak</div>
+      </div>
+    </div>
+
+    <section class="card mb-6">
+      <h3 class="card-title">Add New Habit</h3>
+      <div class="add-habit-form">
+        <input type="text" id="habitInput" placeholder="e.g., Drink water, Exercise, Read..." maxlength="50">
+        <button class="btn" onclick="addHabit()">Add Habit</button>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="section-header">
+        <h3 class="card-title">This Week</h3>
+        <div class="week-nav">
+          <span id="weekLabel"></span>
+        </div>
+      </div>
+      
+      <div class="week-headers" id="weekHeaders"></div>
+      
+      <div id="habitsList">
+        <div class="empty-state">
+          <div class="empty-state-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
+          <div class="empty-state-title">No habits yet</div>
+          <p class="text-sm text-muted">Add your first habit to start tracking</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="toast-container" id="toastContainer"></div>
+
+  <style>
+    .add-habit-form { display: flex; gap: var(--space-3); }
+    .add-habit-form input { flex: 1; }
+    
+    .week-headers { display: flex; gap: var(--space-2); margin-bottom: var(--space-4); padding-left: 140px; }
+    .week-header { width: 40px; text-align: center; font-size: var(--text-xs); color: var(--text-muted); font-weight: 500; }
+    .week-header.today { color: var(--primary); font-weight: 600; }
+    
+    .habit-row { display: flex; align-items: center; gap: var(--space-3); padding: var(--space-3); background: var(--bg-elevated); border-radius: var(--radius-lg); margin-bottom: var(--space-2); }
+    .habit-info { width: 120px; flex-shrink: 0; }
+    .habit-name { font-weight: 500; font-size: var(--text-sm); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .habit-streak { font-size: var(--text-xs); color: var(--success); }
+    
+    .habit-days { display: flex; gap: var(--space-2); flex: 1; }
+    .habit-day { width: 40px; height: 40px; border-radius: 50%; border: 2px solid var(--border-color); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s ease; font-size: var(--text-sm); background: var(--bg-elevated); }
+    .habit-day:hover { border-color: var(--primary); transform: scale(1.1); }
+    .habit-day.done { background: var(--gradient-primary); border-color: transparent; color: white; }
+    .habit-day.today { outline: 2px solid var(--success); outline-offset: 2px; }
+    .habit-day.future { opacity: 0.3; cursor: not-allowed; }
+    
+    .habit-actions { display: flex; gap: var(--space-2); }
+    .habit-delete { background: none; border: none; cursor: pointer; opacity: 0.5; font-size: 1rem; padding: var(--space-1); }
+    .habit-delete:hover { opacity: 1; transform: none; box-shadow: none; }
+    
+    @media (max-width: 768px) {
+      .week-headers { padding-left: 0; justify-content: center; }
+      .habit-row { flex-wrap: wrap; }
+      .habit-info { width: 100%; margin-bottom: var(--space-2); }
+      .habit-days { justify-content: center; }
+      .habit-actions { width: 100%; justify-content: flex-end; margin-top: var(--space-2); }
+    }
+  </style>
+
+  <script type="module">
+    import { auth, db, onAuthStateChanged, signOut, collection, addDoc, getDocs, updateDoc, deleteDoc, doc, getLocalDateString, Timestamp } from './js/config/firebase.js';
+    
+    let currentUser = null;
+    let habits = [];
+    const today = getLocalDateString();
+    const weekDates = getWeekDates();
+    
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    
+    onAuthStateChanged(auth, async (user) => {
+      if (!user) { window.location.href = 'index.html'; return; }
+      currentUser = user;
+      updateNavUser();
+      renderWeekHeaders();
+      await loadHabits();
+    });
+    
+    function updateNavUser() {
+      if (currentUser) {
+        const name = currentUser.displayName || 'User';
+        document.getElementById('navUserName').textContent = name;
+        document.getElementById('navUserEmail').textContent = currentUser.email;
+        document.getElementById('userAvatar').textContent = name.charAt(0).toUpperCase();
+      }
+    }
+    
+    function getWeekDates() {
+      const dates = [];
+      const now = new Date();
+      const dayOfWeek = now.getDay();
+      
+      for (let i = 0; i < 7; i++) {
+        const d = new Date(now);
+        d.setDate(now.getDate() - dayOfWeek + i);
+        dates.push({
+          date: `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`,
+          dayName: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][i],
+          dayNum: d.getDate()
+        });
+      }
+      return dates;
+    }
+    
+    function renderWeekHeaders() {
+      const container = document.getElementById('weekHeaders');
+      container.innerHTML = weekDates.map(d => 
+        `<div class="week-header ${d.date === today ? 'today' : ''}">${d.dayName}<br>${d.dayNum}</div>`
+      ).join('');
+      
+      // Set week label
+      const start = new Date(weekDates[0].date);
+      const end = new Date(weekDates[6].date);
+      document.getElementById('weekLabel').textContent = 
+        `${start.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })} - ${end.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}`;
+    }
+    
+    async function loadHabits() {
+      try {
+        // Try Firebase first
+        const snap = await getDocs(collection(db, 'users', currentUser.uid, 'habits'));
+        habits = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+        
+        // Migrate from localStorage if needed
+        if (habits.length === 0) {
+          const local = JSON.parse(localStorage.getItem('habits') || '[]');
+          if (local.length > 0) {
+            for (const h of local) {
+              await addDoc(collection(db, 'users', currentUser.uid, 'habits'), {
+                name: h.name,
+                completedDates: [],
+                createdAt: Timestamp.now()
+              });
+            }
+            localStorage.removeItem('habits');
+            return loadHabits();
+          }
+        }
+        
+        renderHabits();
+        updateStats();
+      } catch (e) {
+        console.error('Error loading habits:', e);
+        showToast('Error loading habits', 'error');
+      }
+    }
+    
+    function renderHabits() {
+      const container = document.getElementById('habitsList');
+      
+      const emptyIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>';
+      const deleteIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:18px;height:18px;"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>';
+      
+      if (habits.length === 0) {
+        container.innerHTML = `
+          <div class="empty-state">
+            <div class="empty-state-icon">${emptyIcon}</div>
+            <div class="empty-state-title">No habits yet</div>
+            <p class="text-sm text-muted">Add your first habit to start tracking</p>
+          </div>
+        `;
+        return;
+      }
+      
+      container.innerHTML = habits.map(h => {
+        const completed = h.completedDates || [];
+        const streak = calculateStreak(completed);
+        
+        return `
+          <div class="habit-row" data-id="${h.id}">
+            <div class="habit-info">
+              <div class="habit-name">${h.name}</div>
+              <div class="habit-streak">${streak > 0 ? `${streak} day streak` : ''}</div>
+            </div>
+            <div class="habit-days">
+              ${weekDates.map(d => {
+                const done = completed.includes(d.date);
+                const isToday = d.date === today;
+                const isFuture = d.date > today;
+                return `<div class="habit-day ${done ? 'done' : ''} ${isToday ? 'today' : ''} ${isFuture ? 'future' : ''}" 
+                  onclick="${isFuture ? '' : `toggleHabit('${h.id}', '${d.date}')`}">${done ? '✓' : ''}</div>`;
+              }).join('')}
+            </div>
+            <div class="habit-actions">
+              <button class="habit-delete" onclick="deleteHabit('${h.id}')">${deleteIcon}</button>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+    
+    function calculateStreak(completedDates) {
+      if (!completedDates || completedDates.length === 0) return 0;
+      
+      let streak = 0;
+      for (let i = 0; i < 365; i++) {
+        const date = getDateDaysAgo(i);
+        if (completedDates.includes(date)) {
+          streak++;
+        } else if (i > 0) {
+          break;
+        }
+      }
+      return streak;
+    }
+    
+    function updateStats() {
+      document.getElementById('totalHabits').textContent = habits.length;
+      
+      // Today completed
+      let todayDone = 0;
+      habits.forEach(h => {
+        if (h.completedDates?.includes(today)) todayDone++;
+      });
+      document.getElementById('todayCompleted').textContent = todayDone;
+      
+      // Weekly rate
+      let weekTotal = 0, weekDone = 0;
+      habits.forEach(h => {
+        weekDates.forEach(d => {
+          if (d.date <= today) {
+            weekTotal++;
+            if (h.completedDates?.includes(d.date)) weekDone++;
+          }
+        });
+      });
+      const rate = weekTotal > 0 ? Math.round((weekDone / weekTotal) * 100) : 0;
+      document.getElementById('weeklyRate').textContent = rate + '%';
+      
+      // Longest streak
+      let longest = 0;
+      habits.forEach(h => {
+        const streak = calculateStreak(h.completedDates || []);
+        if (streak > longest) longest = streak;
+      });
+      document.getElementById('longestStreak').textContent = longest;
+    }
+    
+    window.addHabit = async function() {
+      const input = document.getElementById('habitInput');
+      const name = input.value.trim();
+      
+      if (!name) {
+        showToast('Enter a habit name', 'error');
+        return;
+      }
+      
+      if (habits.some(h => h.name.toLowerCase() === name.toLowerCase())) {
+        showToast('Habit already exists', 'error');
+        return;
+      }
+      
+      try {
+        await addDoc(collection(db, 'users', currentUser.uid, 'habits'), {
+          name,
+          completedDates: [],
+          createdAt: Timestamp.now()
+        });
+        
+        input.value = '';
+        await loadHabits();
+        showToast('Habit added!', 'success');
+      } catch (e) {
+        console.error('Error adding habit:', e);
+        showToast('Failed to add habit', 'error');
+      }
+    };
+    
+    window.toggleHabit = async function(habitId, date) {
+      const habit = habits.find(h => h.id === habitId);
+      if (!habit) return;
+      
+      const completed = habit.completedDates || [];
+      const index = completed.indexOf(date);
+      
+      if (index > -1) {
+        completed.splice(index, 1);
+      } else {
+        completed.push(date);
+      }
+      
+      try {
+        await updateDoc(doc(db, 'users', currentUser.uid, 'habits', habitId), {
+          completedDates: completed
+        });
+        
+        habit.completedDates = completed;
+        renderHabits();
+        updateStats();
+      } catch (e) {
+        console.error('Error toggling habit:', e);
+        showToast('Failed to update', 'error');
+      }
+    };
+    
+    window.deleteHabit = async function(habitId) {
+      if (!confirm('Delete this habit?')) return;
+      
+      try {
+        await deleteDoc(doc(db, 'users', currentUser.uid, 'habits', habitId));
+        await loadHabits();
+        showToast('Habit deleted', 'success');
+      } catch (e) {
+        console.error('Error deleting habit:', e);
+        showToast('Failed to delete', 'error');
+      }
+    };
+    
+    function getDateDaysAgo(days) {
+      const d = new Date();
+      d.setDate(d.getDate() - days);
+      return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+    }
+    
+    // Enter key to add
+    document.getElementById('habitInput').addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') addHabit();
+    });
+    
+    function showToast(msg, type='info') {
+      const c = document.getElementById('toastContainer');
+      const t = document.createElement('div');
+      t.className = `toast toast-${type}`;
+      t.textContent = msg;
+      c.appendChild(t);
+      setTimeout(() => t.remove(), 3000);
+    }
+    
+    window.toggleTheme = function() {
+      const c = document.documentElement.getAttribute('data-theme');
+      const n = c === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', n);
+      localStorage.setItem('theme', n);
+    };
+    
+    window.logout = async function() { await signOut(auth); window.location.href = 'index.html'; };
+    window.toggleSidebar = function() { 
+      document.getElementById('sidebar').classList.toggle('open'); 
+      document.getElementById('navOverlay').classList.toggle('show');
+    };
+  </script>
+</body>
+</html>
